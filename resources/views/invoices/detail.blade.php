@@ -317,13 +317,22 @@
                                 required>
                         </div>
                         <div class="form-group col-md-12">
+                             <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="currencySwitch" value="USD" name="currency">
+                                <label class="custom-control-label" for="currencySwitch">USD / IDR</label>
+                            </div>        
+                            <div id="selectedCurrency" class="mt-3">
+                            <p>You have selected: <span id="currencyLabel">USD</span></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
                             <label>Price</label>
                             <input type="text" class="form-control" placeholder="Price" name="price"
                                 value="" required>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Curs</label>
-                            <input type="text" class="form-control" placeholder="Curs" name="curs" value=""
+                            <input type="text" class="form-control" placeholder="Curs" name="curs" value="" id="curs"
                                 required>
                         </div>
                         <div class="form-group col-md-12">
@@ -393,6 +402,23 @@
                         });
                     }
                 });
+            });
+
+            const currencySwitch = document.getElementById('currencySwitch');
+            const currencyLabel = document.getElementById('currencyLabel');
+            const curs = document.getElementById('curs');
+
+            currencySwitch.addEventListener('change', function() {
+                if (currencySwitch.checked) {
+                    currencyLabel.textContent = 'IDR';
+                    currencySwitch.value = "IDR";
+                    curs.value = 1;
+                    curs.setAttribute("readonly", true);
+                } else {
+                    currencyLabel.textContent = 'USD';
+                    currencySwitch.value = "USD";
+                    curs.setAttribute("readonly", false);
+                }
             });
         });
     </script>

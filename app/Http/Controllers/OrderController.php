@@ -37,12 +37,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $this->validate($request, [
             'item'   => 'required',
             'price'   => 'required',
             'curs'   => 'required',
             'remarks'   => 'required'
         ]);
+
+        if($request->currency) {
+            // untuk idr
+        }
 
         $subtotal = $request->price * $request->curs;
 
